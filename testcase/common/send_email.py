@@ -10,12 +10,12 @@ def send_email(test_report):
     with open(test_report, 'r', encoding='utf-8') as f:
 
         mail_body = f.read()                                    # 打开测试报告，读取报告内容作为邮件内容
-    sender = '17774007458@163.com'                              # 发出邮箱
-    receiver = ['17774007458@163.com']                          # 接收邮箱
+    sender = '*********'                              # 发出邮箱
+    receiver = ['*********']                          # 接收邮箱
     mail_server = 'https://mail.163.com/'                       # 邮箱服务地址，这里以139邮箱为例
     subject = '自动化测试报告'                                     # 邮件标题
-    username = '17774007458@163.com'                            # 邮箱登录名
-    passwd = 'liang.woaini1013'                                 # 密码
+    username = '*********'                            # 邮箱登录名
+    passwd = '*********'                                 # 密码
     message = MIMEText(mail_body, 'html', 'utf-8')              # 设置邮件格式
     message['Subject'] = Header(subject, charset='utf-8')
     # 邮箱登录

@@ -41,7 +41,7 @@ class LoginPage(Base):
         Select(ele).select_by_value(value)
         self.click(self.btn)
 
-    def is_login_text(self,text="李昂"):
+    def is_login_text(self,text="*********"):
         '''校验登陆结果'''
         return self.text_to_element(self.nick,text)
 
