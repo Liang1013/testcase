@@ -37,8 +37,7 @@ class LoginPage(Base):
         self.click(self.submit)
 
         '''Select界面'''
-        ele = self.findelement(self.sel)
-        Select(ele).select_by_value(value)
+        self.select_by_value(self.sel,value)
         self.click(self.btn)
 
     def is_login_text(self,text="*********"):

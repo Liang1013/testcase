@@ -34,3 +34,9 @@ class Base():
             return element
         except:
             return False
+
+
+    def select_by_value(self,locatre,value):
+        '''通过value属性'''
+        ele = self.findelement(locatre)
+        Select(ele).select_by_value(value)
