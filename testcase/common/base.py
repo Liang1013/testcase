@@ -1,6 +1,8 @@
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.common.action_chains import ActionChains
 
 '''
 Example:
@@ -40,3 +42,12 @@ class Base():
         '''通过value属性'''
         ele = self.findelement(locatre)
         Select(ele).select_by_value(value)
+
+    def select_by_text(self,locater,text):
+        ele = self.findelement(locater)
+        Select(ele).select_by_visible_text(text)
+
+    def move_to_element(self,locater):
+        '''鼠标悬浮方法'''
+        ActionChains(self.driver).move_to_element(
+            self.findelement(locater)).perform()

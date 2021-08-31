@@ -23,13 +23,13 @@ class CseLogin(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls) -> None:
-        cls.loginn.quit()
+        cls.driver.quit()
 
     @ddt.data(*testdatas)
     def test_login_A(self,data):
         '''登陆成测试用例'''
         self.loginn.is_login(data["usernam"],data["password"],data["value"])
-        t = self.loginn.is_login_text()
+        t = self.loginn.is_login_text(data["text"])
         print("登陆结果：",t)
         self.assertTrue(t)
 

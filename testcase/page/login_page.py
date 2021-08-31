@@ -1,10 +1,9 @@
-from selenium.webdriver.support.select import Select
 from common.base import Base
 from selenium import webdriver
 
 import time
 
-url = "http://crm.maimiaotech.com/auth/login/"
+url = "http://liang.maimiaotech.com:30001/auth/login/?next=/#nav_0"
 '''
 ID = "id"
     XPATH = "xpath"
@@ -29,7 +28,8 @@ class LoginPage(Base):
     #登陆成功定位
     nick = ("css selector",".nick-name")
 
-    def is_login(self,username,password,value):
+
+    def is_login(self,username="翁佳瑞",password="maimiao8025@",value="95"):
         self.driver.get(url) #登陆url
         '''登陆界面'''
         self.sendkyes(self.username,username)
@@ -40,19 +40,15 @@ class LoginPage(Base):
         self.select_by_value(self.sel,value)
         self.click(self.btn)
 
-    def is_login_text(self,text="*********"):
+    def is_login_text(self,text):
         '''校验登陆结果'''
         return self.text_to_element(self.nick,text)
-
-    def quit(self):
-        '''关闭浏览器'''
-        self.driver.quit()
 
 if __name__ == "__main__":
     driver = webdriver.Chrome("/usr/local/bin/chromedriver")
     loginn = LoginPage(driver)
     loginn.is_login("95")
-    t = loginn.is_login_text()
+    t = loginn.is_login_text("翁佳瑞")
     print("登陆结果：",t)
     time.sleep(3)
     driver.quit()
