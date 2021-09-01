@@ -1,18 +1,19 @@
 from selenium import webdriver
 from page.toolconfig_page import ToolConfig
 from page.login_page import LoginPage
+from common.route import Route
 
-import unittest,os
+import unittest,ddt
 
-garderpath  = os.path.dirname(os.path.realpath(__file__)) #获取当前文件父级目录
-garder = os.path.dirname(garderpath) #获取父目录的父目录
-paths = "/data/chromedriver"
+execl = Route().is_excel("tool.xlsx")
 
+@ddt.ddt
 class CaseToolConfig(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        cls.driver = webdriver.Chrome(garder+paths)
+        cls.rou = Route().is_route()
+        cls.driver = webdriver.Chrome(cls.rou)
         cls.lognn = LoginPage(cls.driver)
         cls.tool = ToolConfig(cls.driver)
         cls.lognn.is_login()
@@ -21,9 +22,10 @@ class CaseToolConfig(unittest.TestCase):
     def tearDownClass(cls) -> None:
         cls.driver.quit()
 
-    def test_tool_A(self):
+    @ddt.data(*execl)
+    def test_tool_A(self,data):
         '''工具--标题优化--编辑模块'''
-        self.tool.is_tool_edit("免费工具")
+        self.tool.is_tool_edit(data["text"])
         t = self.tool.is_tool_text()
         print("编辑结果：",t)
         self.assertTrue(t)

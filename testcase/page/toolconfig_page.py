@@ -51,7 +51,6 @@ class ToolConfig(Base):
 
 
 if __name__ == "__main__":
-
     driver = webdriver.Chrome("/usr/local/bin/chromedriver")
     loginn  = LoginPage(driver)
     tool = ToolConfig(driver)

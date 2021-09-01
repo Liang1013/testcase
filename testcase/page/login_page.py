@@ -1,9 +1,11 @@
 from common.base import Base
+from common.route import Route
 from selenium import webdriver
 
 import time
 
 url = "http://liang.maimiaotech.com:30001/auth/login/?next=/#nav_0"
+
 '''
 ID = "id"
     XPATH = "xpath"
@@ -28,7 +30,6 @@ class LoginPage(Base):
     #登陆成功定位
     nick = ("css selector",".nick-name")
 
-
     def is_login(self,username="翁佳瑞",password="maimiao8025@",value="95"):
         self.driver.get(url) #登陆url
         '''登陆界面'''
@@ -45,9 +46,10 @@ class LoginPage(Base):
         return self.text_to_element(self.nick,text)
 
 if __name__ == "__main__":
-    driver = webdriver.Chrome("/usr/local/bin/chromedriver")
+    rou = Route().is_route()
+    driver = webdriver.Chrome(rou)
     loginn = LoginPage(driver)
-    loginn.is_login("95")
+    loginn.is_login()
     t = loginn.is_login_text("翁佳瑞")
     print("登陆结果：",t)
     time.sleep(3)
